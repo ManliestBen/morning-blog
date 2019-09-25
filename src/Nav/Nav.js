@@ -1,8 +1,9 @@
 import React from 'react'
+import { tsPropertySignature } from '@babel/types'
 
-const Nav = () => {
+const Nav = (props) => {
     return (
-        <h3>I am a nav bar!</h3>
+        <h3>{props.content}</h3>
     )
 }
 
