@@ -1,17 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 import Nav from './Nav'
 import Footer from './Footer'
 
-function App() {
-  return (
-    <div className="App">
+class App extends Component {
+  
+  state = {
+    isShowing : true
+  }
+   
+  handleClick = event => {
+    this.setState({
+      isShowing : !this.state.isShowing
+    })
+  }
+  render() {
+    const title = <h1>Confetti Blog</h1>
+    return (
+    <div className="App container">
       <Nav />
-      <h1>Blog</h1>
+        {this.state.isShowing ? title : null}
+        <button onClick={this.handleClick}>Click meeeee!</button>
       <Footer />
     </div>
   );
-}
-
+}}
 export default App;
