@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './BlogForm.css'
+import PropTypes from 'prop-types';
 
 class BlogForm extends Component {
     state = {
@@ -39,9 +40,14 @@ class BlogForm extends Component {
                 onChange={this.handleOnChange} 
                 value ={this.state.content} 
                 />
+                <button onClick={this.props.handleToggle} >Close</button>
             </form>
         )
     }
 }
 
 export default BlogForm
+
+BlogForm.propTypes = {
+    handleToggle : PropTypes.func
+}
