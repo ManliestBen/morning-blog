@@ -1,0 +1,6 @@
+.blog-form {
+    display: flex;
+    flex-direction: column;
+    background-color: cornflowerblue;
+
+}
