@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Nav from './Nav'
 import Footer from './Footer'
+import BlogForm from './BlogForm'
 
 class App extends Component {
   
@@ -43,6 +44,7 @@ class App extends Component {
     <div className="App container">
       <Nav content="NAV"/>
         {this.state.isShowing ? title : null}
+        <BlogForm />
         <ul>{composedPosts}
         </ul>
         <button onClick={this.handleClick}>Click meeeee!</button>
