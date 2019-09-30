@@ -1,5 +1,11 @@
 .blog-form {
     display: flex;
     flex-direction: column;
-    background-color: cornflowerblue;
+    
+}
+
+.post-title-author {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

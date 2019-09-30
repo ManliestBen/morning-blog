@@ -28,6 +28,14 @@ class App extends Component {
       isShowing : !this.state.isShowing
     })
   }
+
+  // update state and pass method down to another component
+
+  handleAddPost = post => {
+    this.setState({
+      posts: [{...post}, ...this.state.posts]
+    })
+  }
   render() {
     
     const title = <h1>Confetti Blog</h1>
@@ -43,7 +51,11 @@ class App extends Component {
     return (
     <div className="App container">
       <Nav content="NAV"/>
-        {this.state.isShowing ? <BlogForm handleToggle={this.handleShowForm} /> : <button onClick={this.handleShowForm}>Add Post</button>}
+        {this.state.isShowing ? 
+          <BlogForm 
+            handleToggle={this.handleShowForm} 
+            handleAddPost={this.handleAddPost} 
+          /> : <button onClick={this.handleShowForm}>Add Post</button>}
         <ul>{composedPosts}
         </ul>
         
