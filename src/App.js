@@ -36,6 +36,13 @@ class App extends Component {
       posts: [{...post}, ...this.state.posts]
     })
   }
+
+  handleDelete = id => {
+    let newState = this.state.posts.filter(item => this.state.posts[id] !== item)
+    this.setState({
+      posts: newState
+    })
+  }
   render() {
     
     const title = <h1>Confetti Blog</h1>
@@ -45,6 +52,7 @@ class App extends Component {
           <h3 className='postTitles'>{item.title}</h3>
           <p>{item.content}</p>
           <h6>{item.user}</h6>
+          <button onClick={() => this.handleDelete(index)}>Delete</button>
         </li>
       )
     })
