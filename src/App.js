@@ -51,9 +51,9 @@ class App extends Component {
       return (
         <Post key={index} 
               text={item.title} 
-              author={item.author} 
+              user={item.author} 
               content={item.content} 
-              handleClick={this.handleDelete}
+              handleDelete={this.handleDelete}
               id={index} 
               />
       )
