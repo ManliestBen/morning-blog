@@ -9,21 +9,17 @@ class App extends Component {
   
   state = {
     isShowing : true,
-    posts : [
-      {
-        title : "My first confetti blog post.",
-        content : "I love confetti!!!  It is the best!!!",
-        user : "Ben"
-      },
-      {
-        title: "Pandas are fun!",
-        content:  "They are fun, but not as fun as confetti.",
-        user: "CWill833"
-      }
-    ]
+    posts : []
 
   }
-   
+  
+  componentDidMount = () => {
+    getAll()
+      .then(results => {
+        this.setState({posts: [...results]})
+      })
+  }
+
   handleShowForm = event => {
     this.setState({
       isShowing : !this.state.isShowing
@@ -32,10 +28,20 @@ class App extends Component {
 
   // update state and pass method down to another component
 
-  handleAddPost = post => {
-    this.setState({
-      posts: [{...post}, ...this.state.posts]
-    })
+  handleAddPost = ({title, author, post}) => {
+    const url = 'http://localhost:8000/api/post'
+    const options = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({title, author, post})
+    }
+    handleVerbs(url, options).then(results=>
+      this.setState({
+        posts: [results, ...this.state.posts]
+      })
+      )
   }
 
   handleDelete = id => {
@@ -50,9 +56,9 @@ class App extends Component {
     const composedPosts = this.state.posts.map((item, index) => {
       return (
         <Post key={index} 
-              text={item.title} 
+              title={item.title} 
               user={item.author} 
-              content={item.content} 
+              content={item.post} 
               handleDelete={this.handleDelete}
               id={index} 
               />
@@ -74,3 +80,17 @@ class App extends Component {
   );
 }}
 export default App;
+
+async function getAll () {
+  const url = 'http://localhost:8000/api/posts'
+  const initialFetch = await fetch(url)
+  const fetchJSON = await initialFetch.json()
+  return await fetchJSON
+}
+
+async function handleVerbs (url, options) {
+  
+  const initialFetch = await fetch(url, options)
+  const fetchJSON = await initialFetch.json()
+  return await fetchJSON
+}

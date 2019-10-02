@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 class BlogForm extends Component {
     state = {
         title : '',
-        content: '',
-        user: '',
+        post: '',
+        author: '',
     }
     
     
@@ -40,18 +40,18 @@ class BlogForm extends Component {
                 <label> Author </label>
                 <input 
                 type="text" 
-                name="user" 
+                name="author" 
                 onChange={this.handleOnChange} 
-                value ={this.state.user} 
+                value ={this.state.author} 
                 />
                 </div>
             </div>
                 <label> Post </label>
                 <textarea 
                 type="text" 
-                name="content" 
+                name="post" 
                 onChange={this.handleOnChange} 
-                value ={this.state.content} 
+                value ={this.state.post} 
                 />
                 <input type='submit' value='Add'></input>
                 <button className='button-primary' onClick={this.props.handleToggle} >Close</button>

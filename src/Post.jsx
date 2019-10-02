@@ -20,7 +20,7 @@ Post.propTypes = {
     user: PropTypes.string,
     content: PropTypes.string,
     handleDelete: PropTypes.func,
-    id: PropTypes.string
+    id: PropTypes.number
 }
 
 
